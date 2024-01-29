@@ -35,6 +35,7 @@ source "amazon-ebs" "windows-packer" {
   user_data_file = "./bootstrap_win.txt"
   winrm_password = "SuperS3cr3t!!!!"
   winrm_username = "Administrator"
+  "iam_instance_profile": "pws-packer-test-role"
 }
 
 # a build block invokes sources and runs provisioning steps on them.
