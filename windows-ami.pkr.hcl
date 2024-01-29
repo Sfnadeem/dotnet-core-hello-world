@@ -31,11 +31,11 @@ source "amazon-ebs" "windows-packer" {
 #     most_recent = true
 #     owners      = ["amazon"]
 #   }
-  "source_ami" = "ami-06fe4639440b3ab22"
+  source_ami = "ami-06fe4639440b3ab22"
   user_data_file = "./bootstrap_win.txt"
   winrm_password = "SuperS3cr3t!!!!"
   winrm_username = "Administrator"
-  "iam_instance_profile": "pws-packer-test-role"
+  iam_instance_profile = "pws-packer-test-role"
 }
 
 # a build block invokes sources and runs provisioning steps on them.
