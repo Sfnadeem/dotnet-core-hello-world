@@ -1,0 +1,8 @@
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/dotnet-core-hello-world
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/windows-ami.json
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/dotnet-core-hello-world.dll
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/dotnet-core-hello-world.deps.json
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/dotnet-core-hello-world.runtimeconfig.json
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/dotnet-core-hello-world.pdb
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/Microsoft.AspNetCore.Server.Kestrel.Https.dll
+/home/nadeem.malik/Desktop/dotnet-test/dotnet-core-hello-world/.publish/Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
