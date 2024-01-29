@@ -38,12 +38,26 @@ build {
     environment_vars = ["DEVOPS_LIFE_IMPROVER=PACKER"]
     inline           = ["Write-Host \"HELLO NEW USER; WELCOME TO $Env:DEVOPS_LIFE_IMPROVER\"", "Write-Host \"You need to use backtick escapes when using\"", "Write-Host \"characters such as DOLLAR`$ directly in a command\"", "Write-Host \"or in your own scripts.\""]
   }
-  provisioner "windows-restart" {
-  }
+  provisioner "windows-restart" {}
   provisioner "powershell" {
-    environment_vars = ["VAR1=A$Dollar", "VAR2=A`Backtick", "VAR3=A'SingleQuote", "VAR4=A\"DoubleQuote"]
-    script           = "./sample_script.ps1"
+    inline = [
+      # Install Git
+      "Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.1/Git-2.35.1-64-bit.exe -OutFile git.exe",
+      "Start-Process -Wait -FilePath .\\git.exe -ArgumentList '/VERYSILENT /NORESTART /COMPONENTS=icons /LOG'",
+      
+      "Write-Host 'Cloning .NET application from GitHub'",
+      "git clone https://github.com/Sfnadeem/dotnet-core-hello-world.git C:\\DotnetApp",
+      "Write-Host 'Building and running .NET application'",
+      # Install .NET SDK (adjust version as needed)
+      "Invoke-WebRequest -Uri https://dot.net/v1/dotnet-install.ps1 -OutFile dotnet-install.ps1",
+      "& .\\dotnet-install.ps1 -Channel LTS",
+      # Build and run your .NET application
+      "cd C:\\DotnetApp",
+      "dotnet build",
+      "dotnet run"
+    ]
   }
+  
 }
 
 
