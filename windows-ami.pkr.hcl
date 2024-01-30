@@ -22,7 +22,7 @@ source "amazon-ebs" "windows-packer" {
 #     most_recent = true
 #     owners      = ["amazon"]
 #   }
-  source_ami = "ami-06fe4639440b3ab22"
+  source_ami = "ami-0c51b48047ff6f325"
   user_data_file = "./bootstrap_win.txt"
   winrm_password = "SuperS3cr3t!!!!"
   winrm_username = "Administrator"
@@ -42,9 +42,6 @@ build {
   provisioner "powershell" {
     inline = [
       # Install Git
-      "Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.1/Git-2.35.1-64-bit.exe -OutFile git.exe",
-      "Start-Process -Wait -FilePath .\\git.exe -ArgumentList '/VERYSILENT /NORESTART /COMPONENTS=icons /LOG'",
-      
       "Write-Host 'Cloning .NET application from GitHub'",
       "git clone https://github.com/Sfnadeem/dotnet-core-hello-world.git C:\\DotnetApp",
       "Write-Host 'Building and running .NET application'",
@@ -57,7 +54,7 @@ build {
       "dotnet run"
     ]
   }
-  
+
 }
 
 
