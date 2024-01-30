@@ -45,9 +45,6 @@ build {
       "Write-Host 'Cloning .NET application from GitHub'",
       "git clone https://github.com/Sfnadeem/dotnet-core-hello-world.git C:\\DotnetApp",
       "Write-Host 'Building and running .NET application'",
-      # Install .NET SDK (adjust version as needed)
-      "Invoke-WebRequest -Uri https://dot.net/v1/dotnet-install.ps1 -OutFile dotnet-install.ps1",
-      "& .\\dotnet-install.ps1 -Channel LTS",
       # Build and run your .NET application
       "cd C:\\DotnetApp",
       "dotnet build",
