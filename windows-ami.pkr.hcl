@@ -46,7 +46,7 @@ build {
   post-processor "shell-local" {
     inline = [
       <<-EOT
-      aws ssm put-parameter --name "/my-app/ami-id" --value=source.amazon-ebs.windows-packer.ami_id --type String --overwrite
+      aws ssm put-parameter --name "/my-app/ami-id" --value ${source.amazon-ebs.windows-packer.ami_id} --type String --overwrite
       EOT
     ]
   }
