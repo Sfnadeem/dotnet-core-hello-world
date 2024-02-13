@@ -22,7 +22,7 @@ source "amazon-ebs" "windows-packer" {
 #     most_recent = true
 #     owners      = ["amazon"]
 #   }
-  source_ami = "ami-0a17d9b22726874c8"
+  source_ami = "ami-04dd9456238f2e0bb"
   user_data_file = "./bootstrap_win.txt"
   winrm_password = "SuperS3cr3t!!!!"
   winrm_username = "Administrator"
