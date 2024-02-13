@@ -10,7 +10,7 @@ namespace HelloWeb
         {
             app.Run(context =>
             {
-                return context.Response.WriteAsync("Hello World!, New packer image");
+                return context.Response.WriteAsync("Hello World!, My Packer AMI");
             });
         }
     }
