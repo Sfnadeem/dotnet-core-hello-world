@@ -48,7 +48,7 @@ build {
       # Build and run your .NET application
       "cd C:\\DotnetApp",
       "dotnet build",
-      "dotnet run"
+      "start /B dotnet run > NUL 2>&1"
     ]
   }
 
