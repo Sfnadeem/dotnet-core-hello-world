@@ -44,12 +44,12 @@ build {
   }
   # Store the newly generated AMI ID in Parameter Store
   post-processor "shell-local" {
-    inline = [
-      <<-EOT
-      aws ssm put-parameter --name "/my-app/ami-id" --value ${ .Builds[\"amazon-ebs.windows-packer\"].ID } --type String --overwrite
-      EOT
-    ]
-  }
+  inline = [
+    <<-EOT
+    aws ssm put-parameter --name "/my-app/ami-id" --value "{{ .Builds[\"amazon-ebs.windows-packer\"].ID }}" --type String --overwrite
+    EOT
+  ]
+}
 
 }
 
