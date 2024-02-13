@@ -13,15 +13,6 @@ source "amazon-ebs" "windows-packer" {
   communicator  = "winrm"
   instance_type = "t2.micro"
   region        = "${var.region}"
-#   source_ami_filter {
-#     filters = {
-#       name                = "Windows_Server-2019-English-Full-Base*"
-#       root-device-type    = "ebs"
-#       virtualization-type = "hvm"
-#     }
-#     most_recent = true
-#     owners      = ["amazon"]
-#   }
   source_ami = "ami-01095d2acbaab93b6"
   user_data_file = "./bootstrap_win.txt"
   winrm_password = "SuperS3cr3t!!!!"
@@ -51,26 +42,13 @@ build {
       "start /B dotnet run > NUL 2>&1"
     ]
   }
+  # Store the newly generated AMI ID in Parameter Store
+  post-processor "shell-local" {
+    inline = [
+      "aws ssm put-parameter --name \"/my-app/ami-id\" --value \"{{ .Builds[\"amazon-ebs.windows-packer\"].ArtifactID }}\" --type String --overwrite"
+    ]
+  }
 
 }
 
-
-// {
-//     "builders": [
-//       {
-//         "type": "amazon-ebs",
-//         "region": "us-east-2",
-//         "source_ami": "ami-06fe4639440b3ab22",
-//         "instance_type": "t2.micro",
-//         "user_data_file": "./bootstrap_win.txt",
-//         "ami_name": "my-windows-ami-{{timestamp}}",
-//         "communicator": "winrm",
-//         "winrm_username": "Administrator",
-//         "winrm_password": "SuperS3cr3t!!!!",
-//         "winrm_use_ssl": true,
-//         "winrm_insecure": true,
-//         "iam_instance_profile": "pws-packer-test-role"
-//       }
-//     ]
-//   }
 
