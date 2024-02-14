@@ -46,7 +46,7 @@ build {
   post-processor "shell-local" {
   inline = [
     <<-EOT
-    aws ssm put-parameter --name "/my-app/ami-id" --value $ami --type String --overwrite
+    aws ssm put-parameter --name "/my-app/ami-id" --value {{build.source.AMI}} --type String --overwrite
     EOT
   ]
 }
