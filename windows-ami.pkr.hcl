@@ -44,11 +44,13 @@ build {
   }
   # Store the newly generated AMI ID in Parameter Store
   post-processor "shell-local" {
-    inline = <<-EOT
+   inline = [
+    <<-EOT
     AMI_ID=$(jq -r ".builds[-1].artifact_id" manifest.json | cut -d ":" -f2);
     echo $AMI_ID;
     aws ssm put-parameter --name "/my-app/ami-id" --value "$AMI_ID" --type String --overwrite
-  EOT
+    EOT
+  ]
 }
 
 }
