@@ -45,8 +45,10 @@ build {
   # Store the newly generated AMI ID in Parameter Store
   post-processor "shell-local" {
   inline = [
+    AMI_ID=$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)
+    echo $AMI_ID
     <<-EOT
-    aws ssm put-parameter --name "/my-app/ami-id" --value [build.source.amazon.ebs.windows-packer.ID] --type String --overwrite
+    aws ssm put-parameter --name "/my-app/ami-id" --value {{$AMI_ID}} --type String --overwrite
     EOT
   ]
 }
