@@ -9,6 +9,6 @@ phases:
     commands:
       - ami_id=$(aws ssm get-parameter --name "/my-app/ami-id" --query "Parameter.Value" --output text)
       - echo "===========================Image ID" $ami_id
-      - aws ec2 create-launch-template-version --launch-template-id lt-062a7e184874af46e --version-description "Updated AMI version" --source-version 1 --launch-template-data=$ami_id
+      - aws ec2 create-launch-template-version --launch-template-id lt-062a7e184874af46e --version-description "Updated AMI version" --source-version 1 --launch-template-data= $ami_id
       - new_version_number=$(aws ec2 describe-launch-template-versions --launch-template-id lt-062a7e184874af46e --query 'sort_by(LaunchTemplateVersions, &VersionNumber)[-1].VersionNumber' --output text)
       - aws ec2 modify-launch-template --launch-template-id lt-062a7e184874af46e --default-version $new_version_number
