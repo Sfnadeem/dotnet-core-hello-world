@@ -43,13 +43,18 @@ build {
     ]
   }
   # Store the newly generated AMI ID in Parameter Store
-  post-processor "shell-local" {
-  inline = [
-    <<-EOT
-    aws ssm put-parameter --name "/my-app/ami-id" --value {{build.source.AMI}} --type String --overwrite
-    EOT
-  ]
-}
+#   post-processor "shell-local" {
+#   inline = [
+#     <<-EOT
+#     aws ssm put-parameter --name "/my-app/ami-id" --value {{build.source.AMI}} --type String --overwrite
+#     EOT
+#   ]
+# }
+  post-processor "manifest" {
+        output = "manifest.json"
+        strip_path = true
+    
+    }
 
 }
 
