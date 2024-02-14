@@ -43,6 +43,11 @@ build {
     ]
   }
   # Store the newly generated AMI ID in Parameter Store
+  post-processor "manifest" {
+        output = "manifest.json"
+        strip_path = true
+  
+    }
   post-processor "shell-local" {
    inline = [
     <<-EOT
