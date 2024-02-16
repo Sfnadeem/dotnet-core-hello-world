@@ -59,20 +59,16 @@ build {
 }
 
 # Define your provisioner block
-provisioner "shell" {
+provisioner "shell-local" {
   # Install AWS CLI
   inline = [
     "apt-get update -y",
     "apt-get install awscli -y",
     # Fetch parameters from Parameter Store
     "imageId=$(aws ssm get-parameter --name '/my-app/ami-id' --query 'Parameter.Value' --output text)",
-    # "AUTH_SECRET_KEY=$(aws ssm get-parameter --name '/dev/AuthSecretKey' --query 'Parameter.Value' --output text)",
-    echo "===================== newly Image Id" $imageId
-    # Repeat this for all your parameters
-    # Then perform your sed commands and dotnet commands accordingly
-    #"sed -i 's@IPVALIDATIONENABLED_PARAMETER_STORE@'$API_VERSION'@' PWS.Api/PWS.Api/appsettings.json",
-    # Perform other sed commands
-    # Run dotnet commands
+    # Output the fetched image ID
+    "echo '===================== newly Image Id $imageId'",
+    # Perform other operations as needed
   ]
 }
 
