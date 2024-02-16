@@ -14,12 +14,13 @@ phases:
       - new_version_number=$(aws ec2 describe-launch-template-versions --launch-template-id lt-0a83af663c750b036 --query 'sort_by(LaunchTemplateVersions, &VersionNumber)[-1].VersionNumber' --output text)
       - aws ec2 modify-launch-template --launch-template-id lt-0a83af663c750b036 --default-version $new_version_number
 
-      # Step 1: Get the latest version of the launch template
+      # Step 3: Retrieve the latest version number of the launch template
       - latest_version=$(aws ec2 describe-launch-template-versions --launch-template-id lt-0a83af663c750b036 \
-                   --query 'sort_by(LaunchTemplateVersions, &VersionNumber)[-1].VersionNumber' \
-                   --output text)
+                            --query 'sort_by(LaunchTemplateVersions, &VersionNumber)[-1].VersionNumber' \
+                            --output text)
+      - echo "Latest Launch Template Version: $latest_version"
 
-      # Step 2: Update the Auto Scaling Group with the new launch template version
+      # Step 4: Update the Auto Scaling Group with the new launch template version
       - aws autoscaling update-auto-scaling-group \
-        --auto-scaling-group-name pws-asg-poc \
-        --launch-template "LaunchTemplateId=lt-0a83af663c750b036,Version=$latest_version"
+          --auto-scaling-group-name pws-asg-poc \
+          --launch-template "LaunchTemplateId=lt-0a83af663c750b036,Version=$latest_version"
