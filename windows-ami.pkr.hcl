@@ -66,8 +66,8 @@ provisioner "shell-local" {
     "apt-get install awscli -y",
     # Fetch parameters from Parameter Store
     "imageId=$(aws ssm get-parameter --name '/my-app/ami-id' --query 'Parameter.Value' --output text)",
-    # Output the fetched image ID
-    "echo '===================== newly Image Id $imageId'",
+    # Output the fetche
+    Write-Host "===================== newly Image Id $imageId",
     # Perform other operations as needed
   ]
 }
