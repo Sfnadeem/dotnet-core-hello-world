@@ -18,7 +18,7 @@ phases:
       - latest_version=$(aws ec2 describe-launch-template-versions --launch-template-id lt-0a83af663c750b036 \
                             --query 'sort_by(LaunchTemplateVersions, &VersionNumber)[-1].VersionNumber' \
                             --output text)
-      - echo "Latest Launch Template Version: $latest_version"
+      # - echo "Latest Launch Template Version: $latest_version"
 
       # Step 4: Update the Auto Scaling Group with the new launch template version
       - aws autoscaling update-auto-scaling-group \
